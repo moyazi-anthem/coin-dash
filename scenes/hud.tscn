@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 14.0
+offset_right = 264.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+text = "Coins: 0 / 15"
+
+[node name="TimeLabel" type="Label" parent="."]
+offset_left = 380.0
+offset_top = 14.0
+offset_right = 580.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+text = "Time: 0.0"
+horizontal_alignment = 1
+
+[node name="LivesLabel" type="Label" parent="."]
+offset_left = 696.0
+offset_top = 14.0
+offset_right = 936.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+text = "Lives: 3"
+horizontal_alignment = 2
+
+[node name="MessageLabel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "Message"
+horizontal_alignment = 1
+vertical_alignment = 1

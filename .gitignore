@@ -1,0 +1,13 @@
+# Godot 4 import cache and editor data (rebuilt automatically)
+.godot/
+
+# Exported games
+build/
+*.apk
+*.aab
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
