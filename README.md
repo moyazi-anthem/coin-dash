@@ -46,6 +46,8 @@ scripts/
 tools/
     smoke_test.gd   automated check of the game rules (see below)
     screenshot.gd   saves the pictures in docs/
+    zip_web_build.py   zips the web export for itch.io (see below)
+export_presets.cfg   the "Web" export settings
 ```
 
 The idea behind the split: `coin.gd` and `hazard.gd` know nothing about score or lives. They only emit a *signal* (`collected`, `hit`) when the player touches them, and `main.gd` decides what that means. That keeps the rules in one place.
@@ -99,12 +101,33 @@ To retake the screenshots in `docs/` (this opens a game window for a couple of s
 godot --path . --script res://tools/screenshot.gd
 ```
 
+## Export for itch.io
+
+The project includes a ready "Web" export preset (`export_presets.cfg`). It makes a single-threaded build, so it runs on itch.io without any special server settings.
+
+1. One time only: install the Web export templates that match your Godot version (in Godot: **Editor > Manage Export Templates > Download and Install**).
+2. From this folder, export the game and zip it:
+
+```bash
+godot --headless --path . --export-release "Web" build/web/index.html
+python tools/zip_web_build.py
+```
+
+This writes `build/coin-dash-web.zip` (about 10 MB). The `build/` folder is not kept in git.
+
+To try the build on your own computer before uploading, serve the folder over HTTP (browsers will not run it from a `file://` address) and open http://localhost:8060:
+
+```bash
+python -m http.server 8060 --directory build/web
+```
+
+On itch.io: **Create new project**, set *Kind of project* to **HTML**, upload `coin-dash-web.zip` and tick **This file will be played in the browser**. Set the viewport size to **960 x 540** and tick **Fullscreen button**.
+
 ## Ideas for next steps
 
 - Sound effects and a few particles when you collect a coin.
 - A high score that is saved between runs (`FileAccess` or `ConfigFile`).
 - A second kind of coin or a power-up, such as a shield.
-- Export a web build so it can be played on itch.io.
 
 ## Licence
 
